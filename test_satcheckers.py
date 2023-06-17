@@ -16,8 +16,9 @@ from selenium.webdriver.support.ui import Select
 
 import smtplib
 
-
-
+email = "youremail@gmail.com"
+location = "00000" #your zip code
+distance = "10 miles" #whatever your want (has to be on the website as an option)
 class TestSatchecker():
     def setup_method(self):
         service = Service('chromedriver.exe')
@@ -33,7 +34,6 @@ class TestSatchecker():
         #self.driver = webdriver.Chrome(r"chromedriver")
 
         self.driver.get("https://satsuite.collegeboard.org/sat/test-center-search")
-        dateAndLoc = {"November": "", "December": "", "March": ""}
 
         #self.driver.set_window_size(1720, 1349)
         from selenium.webdriver.support.ui import Select
@@ -41,13 +41,13 @@ class TestSatchecker():
         # locate the dropdown element by id
         dropdown = Select(self.driver.find_element(By.ID, "apricot_select_4"))
         time.sleep(1)
-        dropdown.select_by_visible_text("August 26, 2023 — Saturday")
+        dropdown.select_by_visible_text("August 26, 2023 — Saturday") #change to match your wanted date
         #dropdown.select_by_value("2023-06-03")
         #self.driver.find_element(By.ID, "student").click()
         text_input = self.driver.find_element(By.ID, "apricot_input_5")
-        text_input.send_keys("60061")
+        text_input.send_keys(location)
         dropdown = Select(self.driver.find_element(By.ID, "apricot_select_6"))
-        dropdown.select_by_visible_text("10 miles")
+        dropdown.select_by_visible_text(distance)
         button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Find a Test Center')]")
         button.click()
         time.sleep(1)
@@ -79,11 +79,11 @@ class TestSatchecker():
             s.starttls()
 
             # Authentication
-            s.login("surya.cks@gmail.com", "woyqfyvopjikowns")
+            s.login(email, "woyqfyvopjikowns")
 
             # message to be sent
             message = str(number) + "  Testing Centers Open"
-            s.sendmail("surya.cks@gmail.com", "surya.cks@gmail.com", message)
+            s.sendmail(email, email, message)
 
             # terminating the session
             s.quit()
