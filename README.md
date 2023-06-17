@@ -1,1 +1,2 @@
 # SatCenterSearch
+To use it fill in the variables at the top of the file with your respective information. It will alert you and spam you with emails if a test center is open. It is your responsibility to sign-up for it. You might have to set up your email with smtp (just search it up). If enough people want, i could make it register automatically but its a lot of work. Somtimes the program crashes, so make sure to check if the code is still running at least once every day, just make sure there's no error popping up.
